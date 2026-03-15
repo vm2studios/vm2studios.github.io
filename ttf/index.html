@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Генератор текста в PNG</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1><span class="icon">🖋️</span> Генератор текста в PNG</h1>
+        
+        <div class="app-container">
+            <div class="controls">
+                <div class="control-group">
+                    <label for="fontUpload"><span class="icon">📤</span> Загрузите шрифт (.ttf):</label>
+                    <input type="file" id="fontUpload" accept=".ttf">
+                    <div class="file-info" id="fileInfo">Шрифт не загружен</div>
+                </div>
+                
+                <div class="control-group">
+                    <label for="textInput"><span class="icon">✏️</span> Текст:</label>
+                    <textarea id="textInput" placeholder="Введите ваш текст здесь...">Пример текста</textarea>
+                </div>
+                
+                <div class="control-group">
+                    <label for="colorPicker"><span class="icon">🎨</span> Цвет текста:</label>
+                    <input type="color" id="colorPicker" value="#ff6b6b">
+                </div>
+                
+                <div class="control-group">
+                    <label for="fontSize"><span class="icon">📏</span> Размер шрифта (px):</label>
+                    <input type="range" id="fontSize" min="10" max="200" value="72">
+                    <span id="fontSizeValue">72 px</span>
+                </div>
+                
+                <div class="control-group">
+                    <label><span class="icon">⚙️</span> Настройки:</label>
+                    <div class="checkbox-group">
+                        <label>
+                            <input type="checkbox" id="boldCheckbox">
+                            <span>Жирный</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" id="italicCheckbox">
+                            <span>Курсив</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="control-group button-group">
+                    <button id="generateBtn" class="btn generate">
+                        <span class="icon">🖼️</span> Сгенерировать PNG
+                    </button>
+                    <button id="downloadBtn" class="btn download" disabled>
+                        <span class="icon">⬇️</span> Скачать PNG
+                    </button>
+                </div>
+            </div>
+            
+            <div class="preview">
+                <h3><span class="icon">👁️</span> Предпросмотр:</h3>
+                <div class="preview-container">
+                    <canvas id="textCanvas"></canvas>
+                    <div class="canvas-placeholder" id="canvasPlaceholder">
+                        <span class="icon">🖼️</span>
+                        <p>Текст появится здесь после генерации</p>
+                    </div>
+                </div>
+                <div class="preview-info">
+                    <p id="previewInfo">Размер изображения: -</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="instructions">
+            <h3><span class="icon">ℹ️</span> Инструкция:</h3>
+            <ol>
+                <li>Загрузите шрифт в формате .ttf (TrueType Font)</li>
+                <li>Введите нужный текст в поле</li>
+                <li>Выберите цвет и размер текста</li>
+                <li>Нажмите "Сгенерировать PNG"</li>
+                <li>Скачайте полученное изображение</li>
+            </ol>
+            <p class="note">Изображение будет создано с прозрачным фоном и точно по размеру текста</p>
+        </div>
+        
+        <div class="footer">
+            <div class="studio-name">
+                <span class="vm2">vm2</span><span class="studios"> studios</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

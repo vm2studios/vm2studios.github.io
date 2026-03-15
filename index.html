@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vm2 studios - Игровая студия</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+            color: #f0f0f0;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header стили */
+        header {
+            padding: 30px 0;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+        
+        .logo-vm2 {
+            color: #ff3a3a;
+            text-shadow: 0 0 10px rgba(255, 58, 58, 0.5);
+        }
+        
+        .logo-studios {
+            color: #ffffff;
+        }
+        
+        .tagline {
+            text-align: center;
+            font-size: 1.2rem;
+            opacity: 0.8;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+        
+        /* Hero section */
+        .hero {
+            text-align: center;
+            padding: 40px 0 60px;
+            position: relative;
+        }
+        
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #ff3a3a, #ff6b6b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+        
+        /* Projects section */
+        .projects-section {
+            padding: 40px 0 80px;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, #ff3a3a, #ff6b6b);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .project-card {
+            background: rgba(30, 30, 30, 0.7);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .project-header {
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .project-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .project-title {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+        
+        .project-description {
+            font-size: 1rem;
+            opacity: 0.8;
+            line-height: 1.5;
+        }
+        
+        .project-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 15px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            gap: 10px;
+        }
+        
+        .btn-money-catcher {
+            background-color: #2ecc71;
+            color: white;
+        }
+        
+        .btn-money-catcher:hover {
+            background-color: #27ae60;
+            transform: scale(1.02);
+        }
+        
+        .btn-mini-sandbox {
+            background-color: #000000;
+            color: white;
+        }
+        
+        .btn-mini-sandbox:hover {
+            background-color: #333333;
+            transform: scale(1.02);
+        }
+        
+        .btn-ttf-creator {
+            background: linear-gradient(45deg, #6c5ce7, #a29bfe);
+            color: white;
+        }
+        
+        .btn-ttf-creator:hover {
+            background: linear-gradient(45deg, #5b4fdb, #8a7dfa);
+            transform: scale(1.02);
+        }
+        
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 40px;
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+        }
+        
+        .copyright {
+            opacity: 0.6;
+            font-size: 0.9rem;
+        }
+        
+        /* Иконки как SVG */
+        .icon {
+            width: 24px;
+            height: 24px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        
+        .icon-play {
+            background-color: white;
+            border-radius: 50%;
+            position: relative;
+        }
+        
+        .icon-play:after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-40%, -50%);
+            border-style: solid;
+            border-width: 7px 0 7px 12px;
+            border-color: transparent transparent transparent #2ecc71;
+        }
+        
+        .icon-gamepad {
+            background-color: white;
+            border-radius: 5px;
+            position: relative;
+        }
+        
+        .icon-gamepad:before {
+            content: "";
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background-color: #000;
+            border-radius: 50%;
+            top: 5px;
+            left: 5px;
+        }
+        
+        .icon-gamepad:after {
+            content: "";
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background-color: #000;
+            border-radius: 50%;
+            top: 5px;
+            right: 5px;
+        }
+        
+        .icon-pencil {
+            background-color: white;
+            border-radius: 2px;
+            position: relative;
+        }
+        
+        .icon-pencil:after {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 0;
+            top: -4px;
+            right: 0;
+            border-style: solid;
+            border-width: 0 8px 8px 0;
+            border-color: transparent #6c5ce7 transparent transparent;
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2.8rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 2.2rem;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+        
+        /* Анимации */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.8s ease forwards;
+        }
+        
+        .delay-1 { animation-delay: 0.2s; opacity: 0; }
+        .delay-2 { animation-delay: 0.4s; opacity: 0; }
+        .delay-3 { animation-delay: 0.6s; opacity: 0; }
+        
+        /* Эмодзи для иконок проектов */
+        .emoji-icon {
+            font-size: 2.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <span class="logo-vm2">vm2</span><span class="logo-studios"> studios</span>
+            </div>
+            <div class="tagline">Создаю увлекательные игры и полезные инструменты</div>
+        </header>
+        
+        <section class="hero">
+            <h1 class="fade-in">Добро пожаловать в vm2 studios</h1>
+            <p class="fade-in delay-1">Я инди-разработчик, создающий интересные игры и разные инструменты, которые вам пригодятся!</p>
+        </section>
+        
+        <section class="projects-section">
+            <h2 class="section-title fade-in delay-1">Мои проекты</h2>
+            
+            <div class="projects-grid">
+                <!-- Money Catcher -->
+                <div class="project-card fade-in delay-1">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <span class="emoji-icon">💰</span>
+                        </div>
+                        <h3 class="project-title">Money Catcher</h3>
+                        <p class="project-description">Увлекательная игра, где нужно убегать от зомби, собирать разные монетки и покупать за них разные вещички!</p>
+                    </div>
+                    <a href="mon/" class="project-btn btn-money-catcher">
+                        <span class="icon icon-play"></span>
+                        <span>Играть в Money Catcher</span>
+                    </a>
+                </div>
+                
+                <!-- Mini SandBox -->
+                <div class="project-card fade-in delay-2">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <span class="emoji-icon">🎮</span>
+                        </div>
+                        <h3 class="project-title">Mini SandBox</h3>
+                        <p class="project-description">Простая игра с физикой где в вашем распоряжении есть прыгучий мяч, который нужно кинуть так, чтобы он прокатился по всему уровню и собрал все монетки!</p>
+                    </div>
+                    <a href="minsan/" class="project-btn btn-mini-sandbox">
+                        <span class="icon icon-gamepad"></span>
+                        <span>Открыть Mini SandBox</span>
+                    </a>
+                </div>
+                
+                <!-- TTF Text Creator -->
+                <div class="project-card fade-in delay-3">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <span class="emoji-icon">🔤</span>
+                        </div>
+                        <h3 class="project-title">TTF Text Creator</h3>
+                        <p class="project-description">Удобный инструмент для создания текста с использованием вашего пользовательского TTF шрифта. Загрузите свой шрифт, настройте параметры текста и получите готовое изображение с вашим текстом.</p>
+                    </div>
+                    <a href="ttf/" class="project-btn btn-ttf-creator">
+                        <span class="icon icon-pencil"></span>
+                        <span>Использовать TTF Text Creator</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <footer>
+            <div class="footer-logo">
+                <span class="logo-vm2">vm2</span><span class="logo-studios"> studios</span>
+            </div>
+            <p class="copyright">© 2026 vm2 studios. Все права защищены.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Проверка доступности страниц проектов с сообщениями об ошибках
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('.project-btn');
+            
+            links.forEach(link => {
+                link.addEventListener('click', async function(e) {
+                    // Для внешних ссылок оставляем обычное поведение
+                    if (this.href.startsWith('http') && !this.href.includes(window.location.hostname)) {
+                        return;
+                    }
+                    
+                    // Для внутренних ссылок проверяем доступность
+                    e.preventDefault();
+                    const url = this.getAttribute('href');
+                    
+                    try {
+                        const response = await fetch(url, { method: 'HEAD' });
+                        if (response.ok) {
+                            window.location.href = url;
+                        } else {
+                            // Если страница не найдена, показываем сообщение
+                            showMessage(`Страница проекта временно недоступна. Проверьте позже.`, 'error');
+                        }
+                    } catch (error) {
+                        // Если произошла ошибка при проверке, всё равно переходим по ссылке
+                        console.log('Переход к проекту: ' + this.textContent);
+                        window.location.href = url;
+                    }
+                });
+            });
+            
+            // Функция показа сообщений
+            function showMessage(text, type = 'info') {
+                // Удаляем предыдущие сообщения
+                const existingMsg = document.querySelector('.status-message');
+                if (existingMsg) existingMsg.remove();
+                
+                // Создаем новое сообщение
+                const message = document.createElement('div');
+                message.className = `status-message ${type}`;
+                message.textContent = text;
+                message.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    padding: 15px 20px;
+                    border-radius: 8px;
+                    color: white;
+                    font-weight: bold;
+                    z-index: 1000;
+                    animation: slideIn 0.3s ease;
+                    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+                `;
+                
+                if (type === 'error') {
+                    message.style.backgroundColor = '#e74c3c';
+                } else {
+                    message.style.backgroundColor = '#2ecc71';
+                }
+                
+                document.body.appendChild(message);
+                
+                // Удаляем сообщение через 5 секунд
+                setTimeout(() => {
+                    message.style.animation = 'slideOut 0.3s ease';
+                    setTimeout(() => message.remove(), 300);
+                }, 5000);
+            }
+            
+            // Добавляем стили для анимации сообщений
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes slideIn {
+                    from { transform: translateX(100%); opacity: 0; }
+                    to { transform: translateX(0); opacity: 1; }
+                }
+                
+                @keyframes slideOut {
+                    from { transform: translateX(0); opacity: 1; }
+                    to { transform: translateX(100%); opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Анимация при скролле
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animated');
+                    }
+                });
+            }, observerOptions);
+            
+            // Наблюдаем за всеми карточками проектов
+            document.querySelectorAll('.project-card').forEach(card => {
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
