@@ -2,154 +2,242 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>vm2 studios - Игровая студия</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>vm2 studios</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #121212;
-            --surface-color: #1e1e1e;
-            --surface-hover: #2a2a2a;
-            --text-primary: #ffffff;
-            --text-secondary: #a0a0a0;
-            --accent-color: #ff4757;
-            --android-color: #3ddc84;
+            /* Палитра Material 3 Dark Theme */
+            --md-bg: #000000;
+            --md-surface: #1C1B1F;
+            --md-surface-variant: #49454F;
+            --md-primary: #892929;
+            --md-on-primary: #FFFFFF;
+            --md-secondary-container: #421818;
+            --md-on-secondary-container: #FFDADA;
+            --md-text: #E6E1E5;
+            --md-text-secondary: #CAC4D0;
+            --md-outline: #938F99;
             --deprecated-color: #e74c3c;
-            --border-color: rgba(255, 255, 255, 0.08);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: 'Roboto', sans-serif;
+            overflow-wrap: break-word;
         }
         
         body {
-            background-color: var(--bg-color);
-            color: var(--text-primary);
+            background-color: var(--md-bg);
+            color: var(--md-text);
             min-height: 100vh;
-            line-height: 1.6;
+            line-height: 1.5;
+            overflow-x: hidden;
+            overflow-y: scroll;
+            width: 100%;
         }
         
         .container {
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 0 24px;
+            padding: 40px 24px;
         }
         
-        /* Header & Hero */
+        /* Заголовок / Логотип */
         header {
-            padding: 60px 0 40px;
+            margin-bottom: 48px;
             text-align: center;
         }
         
         .logo {
-            font-size: 3rem;
-            font-weight: 800;
-            letter-spacing: 1px;
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+        
+        .logo span {
+            color: var(--md-primary);
+        }
+
+        /* Блок информации о студии */
+        .about-section {
+            background-color: var(--md-surface);
+            border-radius: 28px;
+            padding: 32px;
+            margin-bottom: 48px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .about-section h1 {
+            font-size: 1.5rem;
             margin-bottom: 16px;
-        }
-        
-        .logo-vm2 {
-            color: var(--accent-color);
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            max-width: 700px;
-            margin: 0 auto 30px;
+            font-weight: 500;
         }
 
-        .hero-buttons {
+        .about-section p {
+            font-size: 1rem;
+            color: var(--md-text-secondary);
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+
+        .about-section a {
+            color: var(--md-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.2s;
+        }
+
+        .about-section a:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+
+        /* Стили для кликабельного слова "почту" */
+        .email-trigger {
+            color: var(--md-primary);
+            cursor: pointer;
+            font-weight: 500;
+            transition: opacity 0.2s;
+        }
+        
+        .email-trigger:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+
+        .links-group {
             display: flex;
-            justify-content: center;
-            gap: 16px;
             flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid var(--md-surface-variant);
         }
 
-        .social-btn {
+        .chip {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            background-color: var(--surface-color);
-            color: var(--text-primary);
-            padding: 12px 24px;
+            height: 32px;
+            padding: 0 16px;
             border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            border: 1px solid var(--border-color);
-            transition: all 0.2s ease;
+            background-color: var(--md-secondary-container);
+            color: var(--md-on-secondary-container);
+            font-size: 0.875rem;
+            font-weight: 500;
+            text-decoration: none !important;
+            transition: background-color 0.2s;
         }
 
-        .social-btn:hover {
-            background-color: var(--surface-hover);
-            transform: translateY(-2px);
-            border-color: rgba(255, 255, 255, 0.2);
+        .chip:hover {
+            background-color: var(--md-primary);
+            color: var(--md-on-primary);
         }
 
-        .social-btn.telegram:hover {
-            border-color: #2AABEE;
-            color: #2AABEE;
-        }
-
-        /* Projects Section */
-        .projects-section {
-            padding: 40px 0 80px;
-        }
-        
+        /* Сетка проектов */
         .section-title {
-            font-size: 2rem;
-            margin-bottom: 40px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 12px;
+            font-size: 1.75rem;
+            margin-bottom: 24px;
+            font-weight: 500;
         }
-        
+
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-            gap: 24px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 16px;
+            transition: min-height 0.3s ease; 
         }
-        
-        .project-card {
-            background-color: var(--surface-color);
-            border-radius: 16px;
+
+        .repo-card {
+            background-color: var(--md-surface);
+            border-radius: 24px;
             padding: 24px;
-            border: 1px solid var(--border-color);
-            transition: transform 0.2s ease, border-color 0.2s ease;
             display: flex;
             flex-direction: column;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.2s, background-color 0.2s;
             position: relative;
-            overflow: hidden;
+        }
+
+        .repo-card:hover {
+            background-color: #252429;
+            transform: translateY(-2px);
         }
         
-        .project-card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(255, 255, 255, 0.2);
-        }
-
-        .project-card.deprecated {
+        .repo-card.deprecated {
             opacity: 0.75;
-            border-color: rgba(231, 76, 60, 0.3);
+        }
+        .repo-card.deprecated:hover {
+            opacity: 1;
         }
 
-        .project-card.deprecated:hover {
-            opacity: 1;
+        .repo-title {
+            font-size: 1.25rem;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--md-text);
+        }
+
+        .repo-desc {
+            font-size: 0.875rem;
+            color: var(--md-text-secondary);
+            flex-grow: 1;
+            margin-bottom: 24px;
+        }
+
+        .repo-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 40px;
+            padding: 0 24px;
+            border-radius: 20px;
+            background-color: var(--md-primary);
+            color: var(--md-on-primary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.875rem;
+            align-self: flex-start;
+            transition: opacity 0.2s;
+        }
+
+        .repo-link:hover {
+            opacity: 0.9;
+        }
+        
+        /* Стили для иконок старых проектов */
+        .project-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 12px;
+        }
+
+        .repo-card.deprecated .project-header {
+            padding-right: 150px;
+        }
+
+        .project-icon {
+            width: 48px;
+            height: 48px;
+            object-fit: cover;
+            border-radius: 12px;
+            flex-shrink: 0;
+            background-color: rgba(255, 255, 255, 0.05);
         }
 
         .badge {
             position: absolute;
             top: 24px;
             right: 24px;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 700;
-            padding: 4px 10px;
-            border-radius: 20px;
+            padding: 4px 8px;
+            border-radius: 12px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            white-space: nowrap;
+            text-align: center;
         }
 
         .badge.deprecated {
@@ -157,74 +245,150 @@
             color: var(--deprecated-color);
         }
 
-        .badge.android {
-            background-color: rgba(61, 220, 132, 0.15);
-            color: var(--android-color);
+        /* Пагинация */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 32px;
+            flex-wrap: wrap;
         }
-        
-        .project-header {
+
+        .page-btn {
+            background-color: var(--md-surface);
+            color: var(--md-text);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 20px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
             display: flex;
             align-items: center;
-            gap: 16px;
+            justify-content: center;
+        }
+
+        .page-btn:hover {
+            background-color: var(--md-surface-variant);
+        }
+
+        .page-btn.active {
+            background-color: var(--md-primary);
+            color: var(--md-on-primary);
+            border-color: var(--md-primary);
+        }
+
+        .loader {
+            color: var(--md-text-secondary);
+            font-size: 1rem;
+            padding: 20px 0;
+        }
+
+        /* Модалка */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(2px);
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            animation: fadeIn 0.2s ease-out forwards;
+        }
+
+        .modal-dialog {
+            background-color: var(--md-surface);
+            padding: 24px;
+            border-radius: 28px;
+            width: 90%;
+            max-width: 400px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transform: scale(0.95);
+            animation: scaleIn 0.2s ease-out forwards;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
             margin-bottom: 16px;
-            padding-right: 90px;
-        }
-
-        .project-card.deprecated .project-header {
-            padding-right: 170px; 
-        }
-        
-        .project-icon {
-            width: 48px;
-            height: 48px;
-            object-fit: cover;
-            border-radius: 50%;
-            flex-shrink: 0;
-            background-color: rgba(255, 255, 255, 0.05);
-        }
-        
-        .project-title {
-            font-size: 1.4rem;
-            font-weight: 600;
-            line-height: 1.2;
-        }
-        
-        .project-description {
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-            flex-grow: 1;
-            margin-bottom: 24px;
-        }
-        
-        .project-link {
-            display: inline-block;
-            text-decoration: none;
-            color: var(--text-primary);
+            color: var(--md-text);
             font-weight: 500;
-            font-size: 0.95rem;
-            padding: 10px 16px;
-            background-color: rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
-            text-align: center;
-            transition: background-color 0.2s ease;
         }
 
-        .project-link:hover {
-            background-color: rgba(255, 255, 255, 0.1);
+        .modal-body {
+            font-size: 1.1rem;
+            color: var(--md-text-secondary);
+            margin-bottom: 24px;
+            user-select: all;
         }
-        
-        /* Footer */
+
+        .modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+        }
+
+        .modal-btn {
+            background-color: transparent;
+            color: var(--md-primary);
+            border: none;
+            padding: 10px 16px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            border-radius: 20px;
+            transition: background-color 0.2s;
+        }
+
+        .modal-btn:hover {
+            background-color: var(--md-secondary-container);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes scaleIn {
+            from { transform: scale(0.95); }
+            to { transform: scale(1); }
+        }
+
+        /* Подвал */
         footer {
-            padding: 40px 0;
+            margin-top: 64px;
             text-align: center;
-            border-top: 1px solid var(--border-color);
-            color: var(--text-secondary);
-            font-size: 0.9rem;
+            color: var(--md-text-secondary);
+            font-size: 0.875rem;
+            padding-bottom: 24px;
         }
         
-        @media (max-width: 768px) {
+        /* Адаптация под телефоны */
+        @media (max-width: 600px) {
             .projects-grid {
                 grid-template-columns: 1fr;
+            }
+            .container {
+                padding: 24px 16px; 
+            }
+            .badge {
+                position: relative;
+                top: auto;
+                right: auto;
+                display: inline-block;
+                width: max-content;
+                margin-bottom: 16px;
+            }
+            .repo-card.deprecated .project-header {
+                padding-right: 0; 
+            }
+            .about-section {
+                padding: 24px;
             }
         }
     </style>
@@ -232,183 +396,225 @@
 <body>
     <div class="container">
         <header>
-            <div class="logo">
-                <span class="logo-vm2">vm2</span> studios
-            </div>
-            <div class="hero">
-                <p>Инди-разработчик. Моя стихия — нативная разработка, мобильные интерфейсы и оптимизация под зеленый робот. Создаю полезные утилиты, инструменты для разработчиков и иногда игры.</p>
-                
-                <div class="hero-buttons">
-                    <a href="https://github.com/vm2st" target="_blank" class="social-btn">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-                        </svg>
-                        GitHub Профиль
-                    </a>
-
-                    <a href="https://t.me/vm2_studios" target="_blank" class="social-btn telegram">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M20.665 3.717l-17.73 6.837c-1.21.486-1.203 1.161-.222 1.462l4.552 1.42 10.532-6.645c.498-.303.953-.14.579.192l-8.533 7.701h-.002l.002.001-.314 4.692c.46 0 .663-.211.921-.46l2.211-2.15 4.599 3.397c.848.467 1.457.227 1.668-.785l3.019-14.228c.309-1.239-.473-1.8-1.282-1.434z"/>
-                        </svg>
-                        Telegram Канал
-                    </a>
-                </div>
-
-            </div>
+            <div class="logo"><span>vm2</span> studios</div>
         </header>
         
-        <section class="projects-section">
-            <h2 class="section-title">Мои проекты</h2>
-            
+        <section class="about-section">
+            <h1>Добро пожаловать!</h1>
+            <p>
+                <b>VirtuaMind Squared Studios (vm2 studios)</b> — создаю игры и полезные утилиты для Android, а также (изредка) браузерные проекты. 
+                Моя основная стихия — нативная разработка, использование <b>Android Studio, Kotlin</b> и <b>Java</b> (для старых версий Android) с целью воплощения идей в жизнь. 
+                Ранее я активно использовал Stencyl и HTML5, а сейчас активно изучаю Godot.
+            </p>
+            <p>
+                Следить за свежими новостями и анонсами лучше всего в моём <a href="https://t.me/vm2_studios" target="_blank">Telegram-канале</a>, там все описания, скриншоты и планы на будущее! Также заглядывайте на <a href="https://www.youtube.com/@vm2_studios" target="_blank">YouTube-канал</a>, чтобы смотреть интересные видео о моих проектах.
+            </p>
+            <p>
+                <b>Обратная связь:</b><br>
+                • Нашли баг в проекте? Сообщите сюда: <b><a href="https://t.me/vm2_bugs_bot" target="_blank">vm2_bugs_bot</a></b> или на <span class="email-trigger" onclick="openEmailModal()">почту</span>.<br>
+                • Хотите вступить в студию? Пишите мне в директ Telegram (<b><a href="https://t.me/vatzob" target="_blank">@vatzob</a></b>), или на <span class="email-trigger" onclick="openEmailModal()">почту</span>.<br>
+                • Хотите просто пообщаться по теме программирования? Добро пожаловать в чат моего канала <b><a href="https://t.me/StencylRussia" target="_blank">Telegram</a></b>, пиши - я всегда люблю поговорить!
+            </p>
+
+            <div class="links-group">
+                <a href="https://github.com/vm2st" class="chip" target="_blank">GitHub</a>
+                <a href="https://github.com/vm2studios" class="chip" target="_blank">GitHub 2</a>
+                <a href="https://vm2st.itch.io" class="chip" target="_blank">itch.io</a>
+                <a href="https://www.rustore.ru/catalog/developer/0uvuin" class="chip" target="_blank">RuStore</a>
+                <a href="https://t.me/vm2_studios" class="chip" target="_blank">TG channel</a>
+                <a href="https://t.me/StencylRussia" class="chip" target="_blank">TG chat</a>
+                <a href="https://www.youtube.com/@vm2_studios" class="chip" target="_blank">YouTube</a>
+            </div>
+        </section>
+        
+        <section>
+            <h2 class="section-title" id="repos-title">Мои репозитории</h2>
+            <div id="github-repos" class="projects-grid">
+                <div class="loader">Загрузка данных с GitHub...</div>
+            </div>
+            <!-- Контейнер для кнопок пагинации -->
+            <div id="pagination-controls" class="pagination"></div>
+        </section>
+        
+        <!-- Старые проекты -->
+        <section style="margin-top: 64px;">
+            <h2 class="section-title">Старые проекты</h2>
             <div class="projects-grid">
-
-                <div class="project-card">
-                    <span class="badge android">Android</span>
-                    <div class="project-header">
-                        <img src="assets/my-public-ip-icon.png" alt="My Public IP" class="project-icon">
-                        <h3 class="project-title">My Public IP</h3>
-                    </div>
-                    <p class="project-description">Показывает ваш полный текущий IP-адрес! Вы можете выбрать любого поставщика IP из предложенных, а также настроить своего. Если не уверены, как это использовать — просто оставьте вариант по умолчанию.</p>
-                    <a href="https://github.com/vm2st/ip" target="_blank" class="project-link">Смотреть на GitHub</a>
-                </div>
-
-                <div class="project-card">
-                    <span class="badge android">Android</span>
-                    <div class="project-header">
-                        <img src="assets/funny-photo-flipper-icon.png" alt="Funny Photo Flipper" class="project-icon">
-                        <h3 class="project-title">Funny Photo Flipper</h3>
-                    </div>
-                    <p class="project-description">Создает смешные симметричные фото в пару тапов! Вы загружаете картинку, и приложение невидимой линией делит её пополам. Выберите левую или правую часть и отзеркальте её на другую сторону. Идеально для создания забавных инопланетных лиц!</p>
-                    <a href="https://github.com/vm2st/funnyphoto" target="_blank" class="project-link">Смотреть на GitHub</a>
-                </div>
-
-                <div class="project-card">
-                    <span class="badge android">Android</span>
-                    <div class="project-header">
-                        <img src="assets/squared-test-icon.png" alt="Squared Test" class="project-icon">
-                        <h3 class="project-title">Squared Test</h3>
-                    </div>
-                    <p class="project-description">Бенчмарк-приложение для стресс-тестирования железа. Включает высоконагруженные 3D-сцены (до 50 000 объектов) с точным мониторингом FPS и температуры процессора.</p>
-                    <a href="https://github.com/vm2st/squaredtest" target="_blank" class="project-link">Смотреть на GitHub</a>
-                </div>
-
-                <div class="project-card">
-                    <span class="badge android">Android</span>
-                    <div class="project-header">
-                        <img src="assets/fazip-extractor-icon.png" alt="FAZIP Extractor" class="project-icon">
-                        <h3 class="project-title">FAZIP Extractor</h3>
-                    </div>
-                    <p class="project-description">Мощный архиватор для мобильных устройств. Поддерживает работу с зашифрованными архивами и верификацию GPG-ключей.</p>
-                    <a href="https://github.com/vm2st/fazip" target="_blank" class="project-link">Смотреть на GitHub</a>
-                </div>
-
-                <div class="project-card">
-                    <span class="badge android">Android</span>
-                    <div class="project-header">
-                        <img src="assets/random-application-icon.png" alt="Random Application" class="project-icon">
-                        <h3 class="project-title">Random App</h3>
-                    </div>
-                    <p class="project-description">Открывает случайное приложение! Вы выбираете нужные программы, которые у вас установлены, нажимаете кнопку "РАНДОМ", и система запускает одно случайное приложение из вашего списка.</p>
-                    <a href="https://github.com/vm2st/randomapplication" target="_blank" class="project-link">Смотреть на GitHub</a>
-                </div>
-
-                <div class="project-card">
-                    <span class="badge android">Android</span>
-                    <div class="project-header">
-                        <img src="assets/hush-i-remember-icon.png" alt="Hush! I remember" class="project-icon">
-                        <h3 class="project-title">Hush! I remember</h3>
-                    </div>
-                    <p class="project-description">Для тех, кто сомневается, выключил ли утюг (Android 7.0+). Создаёте локальные «ритуалы», подтверждаете сразу после выполнения, а приложение напомнит проверить: «Точно сделал?» через 5 минут и 1–4 часа.</p>
-                    <a href="https://github.com/vm2st/quiet" target="_blank" class="project-link">Смотреть на GitHub</a>
-                </div>
-
-                <div class="project-card">
-                    <span class="badge android">Android</span>
-                    <div class="project-header">
-                        <img src="assets/splitface-icon.png" alt="SPLITFACE" class="project-icon">
-                        <h3 class="project-title">SPLITFACE</h3>
-                    </div>
-                    <p class="project-description">Асимметричный аркадный баттл для двоих на одном смартфоне! Попал по своему шарику — плюс очко, коснулся чужого — фол и обнуление. Удар по шарику на центральной линии создает помеху (рябь) на половине соперника.</p>
-                    <a href="https://github.com/vm2st/SPLITFACE" target="_blank" class="project-link">Смотреть на GitHub</a>
-                </div>
-
-                <div class="project-card">
-                    <span class="badge android">Android</span>
-                    <div class="project-header">
-                        <img src="assets/procmanager-icon.png" alt="ProcManager" class="project-icon">
-                        <h3 class="project-title">ProcManager</h3>
-                    </div>
-                    <p class="project-description">Утилита для старого Android (4.2+). Просматривайте все процессы на устройстве, завершайте их, а также следите за загрузкой памяти и ЦП. <i>(Может не установиться на новые устройства).</i></p>
-                    <a href="https://github.com/vm2studios/procmanager" target="_blank" class="project-link">Смотреть на GitHub</a>
-                </div>
-
-                <div class="project-card">
-                    <span class="badge android">Android</span>
-                    <div class="project-header">
-                        <img src="assets/multinotepad-icon.png" alt="MultiNotepad" class="project-icon">
-                        <h3 class="project-title">MultiNotepad</h3>
-                    </div>
-                    <p class="project-description">Сопрягайтесь с другом по Bluetooth и пишите в общем текстовом поле! Идеально для передачи ссылок или переписки, когда вы находитесь рядом и нет возможности подключиться к интернету.</p>
-                    <a href="https://github.com/vm2st/multinotepad" target="_blank" class="project-link">Смотреть на GitHub</a>
-                </div>
-
-                <div class="project-card">
-                    <span class="badge android">Android</span>
-                    <div class="project-header">
-                        <img src="assets/photo-stretching-tool-icon.png" alt="Photo Stretching" class="project-icon">
-                        <h3 class="project-title">Photo Stretching</h3>
-                    </div>
-                    <p class="project-description">Растягивает фото как вам хочется по вертикали и горизонтали! Также можно вручную ввести нужный размер фото в пикселях. Зачем оно? Можете придумать сами, но это просто забавно.</p>
-                    <a href="https://github.com/vm2st/photostretchingtool" target="_blank" class="project-link">Смотреть на GitHub</a>
-                </div>
-
-                <div class="project-card">
-                    <span class="badge android">Android</span>
-                    <div class="project-header">
-                        <img src="assets/simple-keyboard-icon.png" alt="Simple Keyboard" class="project-icon">
-                        <h3 class="project-title">Simple Keyboard</h3>
-                    </div>
-                    <p class="project-description">Простая клавиатура (Android 6.0+) с главной фишкой: быстрая вставка текста в поле ввода одной кнопкой. Без постоянного зажатия строки и открытия буфера обмена, который закрывается после отправки.</p>
-                    <a href="https://github.com/vm2st/simplekeyboard" target="_blank" class="project-link">Смотреть на GitHub</a>
-                </div>
-
-                <div class="project-card">
+                
+                <div class="repo-card">
                     <div class="project-header">
                         <img src="assets/mini-sandbox-icon.png" alt="Mini SandBox" class="project-icon">
-                        <h3 class="project-title">Mini SandBox</h3>
+                        <h3 class="repo-title" style="margin-bottom: 0;">Mini SandBox</h3>
                     </div>
-                    <p class="project-description">Простая игра с физикой где в вашем распоряжении есть прыгучий мяч, который нужно кинуть так, чтобы он прокатился по всему уровню и собрал все монетки!</p>
-                    <a href="minsan/" class="project-link">Открыть Mini SandBox</a>
+                    <p class="repo-desc">Простая игра с физикой где в вашем распоряжении есть прыгучий мяч, который нужно кинуть так, чтобы он прокатился по всему уровню и собрал все монетки!</p>
+                    <a href="minsan/" class="repo-link">Открыть Mini SandBox</a>
                 </div>
 
-                <div class="project-card">
+                <div class="repo-card">
                     <div class="project-header">
                         <img src="assets/ttf-text-creator-icon.png" alt="TTF Text Creator" class="project-icon">
-                        <h3 class="project-title">TTF Text Creator</h3>
+                        <h3 class="repo-title" style="margin-bottom: 0;">TTF Text Creator</h3>
                     </div>
-                    <p class="project-description">Загрузите свой пользовательский TTF шрифт, настройте параметры текста и получите готовое изображение с вашим текстом.</p>
-                    <a href="ttf/" class="project-link">Использовать утилиту</a>
+                    <p class="repo-desc">Загрузите свой пользовательский TTF шрифт, настройте параметры текста и получите готовое изображение с вашим текстом.</p>
+                    <a href="ttf/" class="repo-link">Использовать утилиту</a>
                 </div>
 
-                <div class="project-card deprecated">
+                <div class="repo-card deprecated">
                     <span class="badge deprecated">Не поддерживается</span>
                     <div class="project-header">
                         <img src="assets/money-catcher-icon.png" alt="Money Catcher" class="project-icon">
-                        <h3 class="project-title">Money Catcher</h3>
+                        <h3 class="repo-title" style="margin-bottom: 0;">Money Catcher</h3>
                     </div>
-                    <p class="project-description">Увлекательная игра, где нужно убегать от зомби, собирать монетки и покупать за них разные вещи. <b>Внимание: игра больше не разрабатывается и не обновляется.</b></p>
-                    <a href="mon/" class="project-link">Открыть проект</a>
+                    <p class="repo-desc">Увлекательная игра, где нужно убегать от зомби, собирать монетки и покупать за них разные вещи. Внимание: игра больше не разрабатывается и не обновляется.</p>
+                    <a href="mon/" class="repo-link">Открыть проект</a>
                 </div>
 
             </div>
         </section>
         
         <footer>
-            <div class="logo" style="font-size: 1.5rem; margin-bottom: 8px;">
-                <span class="logo-vm2">vm2</span> studios
-            </div>
-            <p>© 2026. Код, кофе и зеленые роботы.</p>
+            <p>© 2026 vm2 studios. Код, кофе и зеленые роботы.</p>
         </footer>
     </div>
+
+    <!-- Модалка -->
+    <div class="modal-overlay" id="emailModal" onclick="closeEmailModal(event)">
+        <div class="modal-dialog" onclick="event.stopPropagation()">
+            <h3 class="modal-title">Моя электронная почта</h3>
+            <div class="modal-body" id="emailAddress">
+                viktor07134@gmail.com
+            </div>
+            <div class="modal-actions">
+                <button class="modal-btn" onclick="copyEmail()">КОПИРОВАТЬ</button>
+                <button class="modal-btn" onclick="closeEmailModal()">ЗАКРЫТЬ</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Функции для модального окна почты
+        function openEmailModal() {
+            document.getElementById('emailModal').classList.add('active');
+        }
+
+        function closeEmailModal(event) {
+            document.getElementById('emailModal').classList.remove('active');
+        }
+
+        function copyEmail() {
+            const emailText = document.getElementById('emailAddress').innerText.trim();
+            navigator.clipboard.writeText(emailText).then(() => {
+                alert('Почта скопирована в буфер обмена!');
+                closeEmailModal();
+            }).catch(err => {
+                console.error('Ошибка при копировании: ', err);
+                alert('Не удалось скопировать почту. Вы можете выделить её вручную.');
+            });
+        }
+
+        // Загрузка репозиториев GitHub
+        let allRepos = [];
+        let currentPage = 1;
+        const reposPerPage = 6; 
+
+        async function fetchGitHubRepos() {
+            const container = document.getElementById('github-repos');
+            const username = 'vm2st'; 
+            
+            try {
+                const response = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=100`);
+                
+                if (!response.ok) {
+                    throw new Error('Ошибка при получении данных');
+                }
+                
+                const repos = await response.json();
+                
+                allRepos = repos.filter(repo => repo.name !== 'vm2st');
+                
+                if (allRepos.length === 0) {
+                    container.innerHTML = '<div class="loader">Репозиториев пока нет.</div>';
+                    return;
+                }
+                
+                renderRepos(1); 
+                
+            } catch (error) {
+                container.innerHTML = '<div class="loader" style="color: #FF5449;">Не удалось загрузить репозитории. Проверьте подключение к интернету.</div>';
+                console.error(error);
+            }
+        }
+
+        function renderRepos(page) {
+            currentPage = page;
+            const container = document.getElementById('github-repos');
+            container.innerHTML = ''; 
+            
+            const startIndex = (page - 1) * reposPerPage;
+            const endIndex = startIndex + reposPerPage;
+            const reposToRender = allRepos.slice(startIndex, endIndex);
+
+            reposToRender.forEach(repo => {
+                const card = document.createElement('div');
+                card.className = 'repo-card';
+                
+                const title = document.createElement('h3');
+                title.className = 'repo-title';
+                title.textContent = repo.name;
+                
+                const desc = document.createElement('p');
+                desc.className = 'repo-desc';
+                desc.textContent = repo.description || 'Описание отсутствует.';
+                
+                const link = document.createElement('a');
+                link.className = 'repo-link';
+                link.href = repo.html_url;
+                link.target = '_blank';
+                link.textContent = 'Смотреть';
+                
+                card.appendChild(title);
+                card.appendChild(desc);
+                card.appendChild(link);
+                
+                container.appendChild(card);
+            });
+
+            renderPaginationControls();
+        }
+
+        function renderPaginationControls() {
+            const paginationContainer = document.getElementById('pagination-controls');
+            paginationContainer.innerHTML = '';
+            
+            const totalPages = Math.ceil(allRepos.length / reposPerPage);
+            
+            if (totalPages <= 1) return; 
+
+            for (let i = 1; i <= totalPages; i++) {
+                const btn = document.createElement('button');
+                btn.className = `page-btn ${i === currentPage ? 'active' : ''}`;
+                btn.textContent = i;
+                
+                btn.onclick = () => {
+                    if (i === currentPage) return;
+                    
+                    const container = document.getElementById('github-repos');
+                    container.style.minHeight = container.offsetHeight + 'px';
+                    
+                    renderRepos(i);
+                    
+                    document.getElementById('repos-title').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    
+                    setTimeout(() => {
+                        container.style.minHeight = '';
+                    }, 400);
+                };
+                
+                paginationContainer.appendChild(btn);
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', fetchGitHubRepos);
+    </script>
 </body>
 </html>
